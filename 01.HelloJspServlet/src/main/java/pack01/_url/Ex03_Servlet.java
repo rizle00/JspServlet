@@ -34,10 +34,10 @@ public class Ex03_Servlet extends HttpServlet {
 			//null.equals 널 포인터익셉션
 			// "".equals -> 오류발생 x
 			
-			
 			System.out.println("로그인 성공");
 		}else {
-			System.out.println("fail");
+			System.out.println("fail");// 자바의 반응
+			response.getWriter().println("fail");// html 에 씀..
 		}
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 //		request.getParameterValues("id");
