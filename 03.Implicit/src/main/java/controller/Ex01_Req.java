@@ -16,9 +16,9 @@ public class Ex01_Req extends HttpServlet {
 	//Controller : 요청에 대한 통제 (페이지로 재요청 후 응답, 데이터로 할지 등등을 ) : 종업원
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("Service까지 옮");
 		RequestDispatcher rd = req.getRequestDispatcher("request/ex01req.jsp");
 		
 		rd.forward(req, resp);
+		System.out.println("Service까지 옮");
 	}
 }

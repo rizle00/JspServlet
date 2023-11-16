@@ -10,7 +10,7 @@
 	<%@ include file="/include/header.jsp"%>
 	<div class="container px-5 my-5">
 		<div class="text-center mb-5">
-			<form action="ex02">
+			<form action="ex02" method="post">
 				<div class="mb-3">
 					<label for="exampleInputEmail1" class="form-label">Email
 						address</label> <input type="text" class="form-control" name="email" required="required"
