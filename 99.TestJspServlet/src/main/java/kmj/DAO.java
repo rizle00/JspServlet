@@ -1,4 +1,4 @@
-package usertbl;
+package kmj;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,14 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 
-
-public class UserTblDAO {
+public class DAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
-	
 	public boolean isConnection() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hanul";
@@ -30,19 +27,22 @@ public class UserTblDAO {
 			} 
 			return false;
 	} 
-	// 전체 목록 조회
-	public ArrayList<UserTblDTO> selectList(){
-		ArrayList<UserTblDTO> list = new ArrayList<>();
+	
+	public ArrayList<DTO> selectList(){
+		ArrayList<DTO> list = new ArrayList<>();
 		
 		if(!isConnection()) return list;
 		try {
 			ps= conn.prepareStatement("select * from usertbl ");
 			rs = ps.executeQuery();
+			int i=0;
 			while(rs.next()) {
-				UserTblDTO dto = new UserTblDTO();
+				DTO dto = new DTO();
+				i++;
+				dto.setIdx(i);
 				dto.setUsername(rs.getString("USERNAME"));
 				dto.setAddress(rs.getString("ADDRESS"));
-				dto.setBirthday(rs.getInt("BIRTHYEAR"));
+				dto.setBirthyear(rs.getInt("BIRTHYEAR"));
 				dto.setMobile(rs.getString("MOBILE"));
 				
 				list.add(dto);
@@ -53,60 +53,13 @@ public class UserTblDAO {
 		
 		return list;
 	}
-
-	public UserTblDTO selectOne(String name) {
-		UserTblDTO dto = new UserTblDTO();
-		if(!isConnection()) return dto;
-		try {
-			ps= conn.prepareStatement("select * from usertbl where username = ? ");
-			ps.setString(1, name);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				dto.setUsername(rs.getString("USERNAME"));
-				dto.setAddress(rs.getString("ADDRESS"));
-				dto.setBirthday(rs.getInt("BIRTHYEAR"));
-				dto.setMobile(rs.getString("MOBILE"));
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return dto;
-	}
-	public void update(String USERNAME, String ADDRESS, int BIRTHYEAR, String MOBILE) {
-//		dto로 받아와도 되나 그냥 귀찮아서 이렇게 함..
-		if(isConnection()==false) return;
-		try {
-			ps= conn.prepareStatement("update usertbl set ADDRESS = ? ,BIRTHYEAR = ?, MOBILE = ? where USERNAME = ? ");
-			ps.setString(1, ADDRESS);
-			ps.setInt(2, BIRTHYEAR);
-			ps.setString(3, MOBILE);
-			ps.setString(4, USERNAME);
-			int result = ps.executeUpdate();
-//			System.out.println(result);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	public void delete(String USERNAME) {
-		if(isConnection()==false) return;
-		try {
-			ps= conn.prepareStatement("delete from usertbl where USERNAME = ? ");
-			ps.setString(1, USERNAME);
-			int result = ps.executeUpdate();
-			System.out.println(result);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 	
-	public void insert(UserTblDTO dto) {
+	public void insert(DTO dto) {
 		if(isConnection()==false) return;
 		try {
 			ps= conn.prepareStatement("insert into usertbl values (?, ?, ?, ?)");
 			ps.setString(1, dto.getUsername());
-			ps.setInt(2, dto.getBirthday());
+			ps.setInt(2, dto.getBirthyear());
 			ps.setString(3, dto.getAddress());
 			ps.setString(4, dto.getMobile());
 			int result = ps.executeUpdate();
@@ -115,7 +68,55 @@ public class UserTblDAO {
 			e.printStackTrace();
 		}
 	}
+
+	public DTO selectOne(String username, String idx) {
+		DTO dto = new DTO();
+		if(!isConnection()) return dto;
+		try {
+			ps= conn.prepareStatement("select * from usertbl where username = ? ");
+			ps.setString(1, username);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				dto.setIdx(Integer.parseInt(idx));
+				dto.setUsername(rs.getString("USERNAME"));
+				dto.setAddress(rs.getString("ADDRESS"));
+				dto.setBirthyear(rs.getInt("BIRTHYEAR"));
+				dto.setMobile(rs.getString("MOBILE"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
 	
+	public void update(DTO dto) {
+		if(isConnection()==false) return;
+		try {
+			ps= conn.prepareStatement("update usertbl set ADDRESS = ? ,BIRTHYEAR = ?, MOBILE = ? where USERNAME = ? ");
+			ps.setString(1, dto.getAddress());
+			ps.setInt(2, dto.getBirthyear());
+			ps.setString(3, dto.getMobile());
+			ps.setString(4, dto.getUsername());
+			int result = ps.executeUpdate();
+			System.out.println(result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int delete(String USERNAME) {
+		if(isConnection()==false) return 0;
+		try {
+			ps= conn.prepareStatement("delete from usertbl where USERNAME = ? ");
+			ps.setString(1, USERNAME);
+			int result = ps.executeUpdate();
+			System.out.println(result);
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }
-
-

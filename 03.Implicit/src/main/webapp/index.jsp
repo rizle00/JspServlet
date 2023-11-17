@@ -202,6 +202,24 @@
                             
                         </section>
                         
+                        <section>
+                           <div class="card shadow border-0 rounded-4 mb-4">
+                                <div class="card-body p-3">
+                                    <div class="row align-items-center gx-5">
+                                        <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                            <div class="bg-light p-4 rounded-4">
+                                                <div class="text-primary fw-bolder mb-2">CRUD 해보기</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8"><div>
+                                        <a href="list">목록 조회 화면(usertbl)</a>
+                                        </div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </section>
+                        
                         
            
             <section class="bg-light py-5">
