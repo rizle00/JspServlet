@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="testMapper">
+<!--  namespace.id
+ex)testMapper.selectTest
+
+resultType = 결과 타입 추후 DTO가 들어감
+
+select 태그는 반드시 id와 resultType을 가진다-->
+  <select id="select1" resultType="Integer">
+    select 1337 from dual
+  </select>
+  <select id="select2" resultType="String">
+  	select 'ads'||'xyz' from dual
+  </select>
+  <select id="selectVO" resultType="mybatis.MybatisVO">
+  select 'abc' param1 , 'def' param2 from dual</select>
+  <!-- UNION, UNION ALL, MINUS
+  		UNION : 연결 된 두 셀렉트문의 결과 중 중복행을 제거 후 출력
+  		UNION ALL : 위와 같으나 중복행 제거가 없어 더 빠름
+  		MINUS : 비교 후 첫 번째 결과에만 있는 데이터 출력(x) <- JOIN  -->
+  	<select id="selectVOList" resultType="mybatis.MybatisVO">
+  	select 'avccasd' param1, 'defasgh' param2 from dual
+  	UNION ALL
+  	select 'ascghq' param1, 'DQWT' param2 from dual
+  	</select>
+  	
+  	<!-- 단일 파라미터 : String, int 등의 변수 하나 값 
+  		단일 파리미터의 경우 매개변수에 대한 매핑을 위치 기반으로 판단하기 때문에 (position-based-mapping)
+  		 변수명이 중요하지 않음
+  		 다중 파라미터 : VO등으로 여러개의 값을 가진 경우
+  		 #{param} : ex) where param = #{param} -> where param = '파라미터'
+  		 ${param} : ex) where param = ${param} -> where param = 파라미터
+  		 
+  		  -->
+  		  
+  		<select id="param1" resultType="String">
+  		select #{param} str from dual
+  		</select>
+  		
+  		<select id="param2" resultType="Integer">
+  		select #{param}+10 int from dual
+  		</select>
+  		<select id="params" resultType="mybatis.MybatisVO">
+  		select #{param1}||'db'  param1 , #{param2}||'cd' param2 from dual
+  		</select>
+  		<insert id="insert">
+  		INSERT INTO MYBATISTBL (COL1) VALUES('cont')
+  		</insert>
+  		<update id="update">
+  			UPDATE MYBATISTBL SET COL2 = COL1||'UPDATE' WHERE COL1 = 'cont'
+  		</update>
+  		<delete id="delete">
+  			DELETE FROM MYBATISTBL WHERE COL1= 'cont'
+  		</delete>
+</mapper>

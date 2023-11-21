@@ -1,0 +1,59 @@
+퍼시스턴스 프레임워크
+데이터베이스와 애플리케이션을 연결하여 데이터 베이스 작업을 하고 관리하는 도구 라이브러리 모음을 의미함
+ORM(Object Relational Mapping) : 관계형 데이터버에스를 자바의 객체 형태로 사용하는 기법
+데이터베이스 연동 관리 (Connection Pool) : 연결, 트랜잭션, Sql 생성.. 등등의  처리
+쿼리 생성 및 최적화
+객체의 상태 변화 추적
+
+Hibernate, JPA(Java Persistence API), "Mybatis", Entity FrameWork
+
+Hibernate : ORM 기반의 퍼시스턴스 프레임워크 . 데이터베이스를 객체지향 프로그래밍 언어와 상호작용하게 만듬.
+			캐싱, 검증, 내장 쿼리, 내장 언어 및 함수 제공 등 다양한 기능이 많음.
+			
+			단점 : 1. 복잡성 : 초기 설정이나 복잡하고 모호한 개념 매핑 설정 등이 필요함.
+				  2. 오버헤드 : 가끔은 머무 많은 기능이 제공되어 사용하지 않는 기능이 메모리에 올라와 있어 속도 저하나 충돌.
+				  
+				  
+JPA ( Java Persistence API) : 표준화 API로 여러 구현체 (Hibernate, EclipseLink)를 선택 사용 가능
+							  객체지향적 접근성 : 객체와 데이터베이스 간의 매핑을 지원하여 객체지향적 프로그램이 가능
+							  어노테이션 지원 : 간단한 어노테이션으로 조인 등을 표현 가능
+							  Java기반의 코드이기 때문에 데이터베이스 종류가 바뀌어도 바로 적용이 가능함.
+							  
+			단점 : 1.기능제한 -> 인터페이스 기반이기 때문에 오라클 등의 고급 데이터베이스의 특성을 다루지 못함.
+				  2.복잡한 쿼리 : 복잡한 쿼리를 작성하면 JPA의 제약이 엄청나게 크게 다가옴.(동적쿼리, ...)
+				  
+				  
+Mybatis
+				개발자가 직접 SQL을 작성하고 제어를 하기 때문에 세밀한 제어나 복잡한 쿼리를 작성할 때 유리함.
+				SQL과 자바 코드가 분리가 되어있어, 가독성이 높고 유지보수가 쉽다.
+				
+				단점 : 초기 설정이 까다로움 (Hibernate > Mybatis > JPA)
+				      Java코드로 사용하는 기능에 제약이 있을 수 있음
+				      
+				세팅하기 
+				1.maven 저장소에서 "JDBC" &"mybatis"를 pom.xml에 넣어주기 (mybatis는 OracleDriver(JDBC)를 이용해서 기능 동작)	
+				<dependencies>
+
+		<!-- Java에서 Oracle 접속용 lib(api) -->
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc11</artifactId>
+			<version>21.8.0.0</version>
+		</dependency>
+		<!-- 퍼시스턴스 프레임워크 마이바티스 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl -->
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+
+	</dependencies>
+			2.마이바티스 공식 문서의 설명서를 참고하여 환경설정을 해준다.(https://mybatis.org/mybatis-3/ko/getting-started.html)		
+				  	
