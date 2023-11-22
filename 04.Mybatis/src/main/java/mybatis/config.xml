@@ -15,7 +15,7 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="mappers/test-mapper.xml"/>
+    <mapper resource="mappers/mybatis.xml"/>
   </mappers>
   <!-- <settings>
   <setting name="defaultAutoCommit" value="true"/>
