@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>05.MybatisMVC</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- 리스너 & 필터 등을 이용해서 인코딩 처리
+  에러가 발생했을 때 url을 요청하여 에러 페이지를 보여주게 하는 처리
+  에러가 발생 -> 코드 종류에[ 따라 따로 Servlet을 요청하고 처리하는게 가능
+  404(페이지 찾을 수 없음) => 404.er
+  error-code : 에러코드는 에러의 종류를 나타냄(400~500) 200: 성공
+  location :  에러 발생 시 요청할 정보 또는 페이지 uri : error/404.jsp 
+  
+  401 : 인증 오류
+  404 : url 또는 경로 문제(찾을 수 없음)
+  500: 코드 오류 -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/404.er</location>
+  </error-page>
+  <error-page>
+  	<error-code>401</error-code>
+  	<location>/401.er</location>
+  </error-page>
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/500.er</location>
+  </error-page>
+</web-app>
