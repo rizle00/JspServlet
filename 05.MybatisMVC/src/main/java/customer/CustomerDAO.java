@@ -6,6 +6,11 @@ import common.MybatisConnection;
 
 public class CustomerDAO extends MybatisConnection {
 	
+	public CustomerDAO() {
+		super(DataResource.HANUL);
+	}
+
+
 	//초기 데이터베이스 연결 테스트, 
 	public void test(){
 		int  result = sql.selectOne("cu.test");

@@ -3,14 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+<properties resource="common/conninfo.properties"/>
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
-        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
-        <property name="username" value="hanul"/>
-        <property name="password" value="0000"/>
+        <property name="driver" value="${db.driver}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${hanul.user}"/>
+        <property name="password" value="${hanul.pw}"/>
       </dataSource>
     </environment>
   </environments>

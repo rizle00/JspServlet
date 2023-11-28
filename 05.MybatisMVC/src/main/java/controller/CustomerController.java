@@ -25,7 +25,7 @@ public class CustomerController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String path = req.getServletPath().replace("/", "");// 슬러시 제외
 		CustomerDAO dao = new CustomerDAO();
-		if(path.equals("list.cu")) {
+ 		if(path.equals("list.cu")) {
 		rd = req.getRequestDispatcher("customer/list.jsp");
 //		List<CustomerVO> list = dao.select();
 		req.setAttribute("list", dao.select());

@@ -18,7 +18,15 @@ public class ErrorController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("에러");
-		rd = req.getRequestDispatcher("error/404.jsp");
+		//Integer code =(Integer) req.getAttribute("javax.servlet.error.status_code");
+		//System.out.println(code); ->현재 페이지 분기를 "web.xml"을 이용해서 처리하면 좋음
+		
+		if(req.getServletPath().equals("/404.er")) {
+			rd = req.getRequestDispatcher("error/404.jsp");
+			
+		} else if(req.getServletPath().equals("/500.er")) {
+			rd = req.getRequestDispatcher("error/500.jsp");
+		}
 		rd.forward(req, resp);
 		
 	}
