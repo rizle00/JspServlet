@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sg">
+
+	<select id="test">
+	select 88 from dual
+	</select>
+	
+	<select id="select" resultType="sg.SgVO">
+	select e.EMPLOYEE_ID, e.FIRST_NAME||', '||e.LAST_NAME name, e.EMAIL, e.SALARY, e.COMMISSION_PCT, e.DEPARTMENT_ID,
+d.DEPARTMENT_NAME, d.MANAGER_ID from EMPLOYEES e 
+left outer join DEPARTMENTS d on e.DEPARTMENT_ID = d.DEPARTMENT_ID
+order by EMPLOYEE_ID
+
+	</select>
+	
+	
+</mapper>

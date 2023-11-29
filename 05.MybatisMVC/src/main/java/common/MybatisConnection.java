@@ -26,7 +26,8 @@ public class MybatisConnection {
 //	
 	public enum DataResource{
 		HANUL("common/hanulconfig.xml"),
-		HR("common/hrconfig.xml");
+		HR("common/hrconfig.xml"),
+		SG("common/sgconfig.xml");
 		private final String config;
 		private DataResource(String config) {
 			this.config = config;

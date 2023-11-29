@@ -13,7 +13,25 @@
 		,'yyyy-mm-dd' ) hire_date, e.SALARY, d.DEPARTMENT_NAME , j.JOB_TITLE
 		from EMPLOYEES e left outer join DEPARTMENTS d on e.DEPARTMENT_ID =
 		d.DEPARTMENT_ID
-		left outer join JOBS j on e.JOB_ID = j.JOB_ID order by e.employee_id
+		left outer join JOBS j on e.JOB_ID = j.JOB_ID 
+		where 1=1
+			<if test="option != null">
+				<choose>
+					<when test="option == 'all'">
+					 	and upper(e.FIRST_NAME || e.LAST_NAME) like '%'||upper(#{keyword}) ||'%'
+					 	or upper(j.JOB_TITLE) like '%'|| upper(#{keyword}) ||'%'
+					 	or upper(d.DEPARTMENT_NAME) like '%'|| upper(#{keyword}) ||'%'
+					</when>
+					<when test="option == 'name'">
+					 	and upper(e.FIRST_NAME || e.LAST_NAME) like '%'||upper(#{keyword}) ||'%'
+					 	
+					</when>
+					<otherwise>
+					 	and upper(${option}) like '%'||upper(#{keyword}) ||'%'
+					 	</otherwise>
+				</choose>
+			</if>
+			order by e.employee_id
 	</select>
 
 

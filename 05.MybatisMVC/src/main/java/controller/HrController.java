@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,7 +22,14 @@ public class HrController extends HttpServlet {
 		
 		if(path.equals("list.hr")) {
 			rd = req.getRequestDispatcher("hr/list.jsp");
-			req.setAttribute("list", dao.select());
+			HashMap<String, String> map = new HashMap<>();
+			map.put("option", req.getParameter("option"));
+			map.put("keyword", req.getParameter("keyword"));
+			req.setAttribute("option", map.get("option"));
+			req.setAttribute("keyword", map.get("keyword"));
+			
+			System.out.println(req.getParameter("option")+req.getParameter("keyword"));
+			req.setAttribute("list", dao.select(map));
 			rd.forward(req, resp);
 		}
 		

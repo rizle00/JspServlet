@@ -16,7 +16,7 @@
 	<section class="page-section">
 		<div class="container">
 
-			<button class="btn btn-danger align-middle" id="insertModalBtn">신규
+			<button class="btn btn-danger align-middle" id="insertModalBtn" >신규
 				추가</button>
 			<table class="table">
 				<thead>

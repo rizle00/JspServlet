@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +8,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="/customer/header.jsp" %>
+	<%@ include file="/customer/header.jsp"%>
 
-<section class="page-section">
+	<section class="page-section">
 		<div class="container">
+
+
+			<form action="list.hr" method="get">
+			<div class="row g-3 align-items-center">
+				<div class="col-auto">
+					<select class="form-select" aria-label="Default select example" name ="option">
+						<option value="all" ${option eq 'all'? 'selected' : '' } >전체</option>
+						<option value="name" ${option eq 'name' ? 'selected' : '' } >이름</option>
+						<option value="department_name" ${option eq 'department_name' ? 'selected' : '' } >부서명</option>
+						<option value="job_title" ${option eq 'job_title' ? 'selected' : ''} >업무명</option>
+					</select>
+
+				</div>
+				<div class="col-auto">
+					<input type="text"  class="form-control" name="keyword" placeholder="검색어를 입력하세요" value="${keyword }"
+						/>
+				</div>
+				<div class="col-auto">
+					<input type="submit" value="검색" class="btn btn-danger">
+				</div>
+			</div>
+				</form>
+			
 			<table class="table">
 				<thead>
 					<tr>
@@ -41,8 +64,8 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${list}" var="vo" varStatus="i">
-						
-								<tr> 
+
+								<tr>
 									<th scope="row">${vo.employee_id }</th>
 									<td>${vo.name }</td>
 									<td>${vo.email}</td>
@@ -61,7 +84,7 @@
 		</div>
 	</section>
 
-<%@ include file="/customer/footer.jsp" %>
+	<%@ include file="/customer/footer.jsp"%>
 
 </body>
 </html>
