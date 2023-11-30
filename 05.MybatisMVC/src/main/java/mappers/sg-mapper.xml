@@ -12,9 +12,47 @@
 	select e.EMPLOYEE_ID, e.FIRST_NAME||', '||e.LAST_NAME name, e.EMAIL, e.SALARY, e.COMMISSION_PCT, e.DEPARTMENT_ID,
 d.DEPARTMENT_NAME, d.MANAGER_ID from EMPLOYEES e 
 left outer join DEPARTMENTS d on e.DEPARTMENT_ID = d.DEPARTMENT_ID
-order by EMPLOYEE_ID
+
+where 1=1
+			<if test="option != null">
+				<choose>
+					<when test="option == 'all'">
+					 	and upper(e.FIRST_NAME || e.LAST_NAME) like '%'||upper(#{keyword}) ||'%'
+					 	or upper(d.DEPARTMENT_NAME) like '%'|| upper(#{keyword}) ||'%'
+					</when>
+					<when test="option == 'employee_id'">
+					 	and e.employee_id = #{keyword}
+					 	
+					</when>
+					<when test="option == 'name'">
+					 	and upper(e.FIRST_NAME || e.LAST_NAME) like '%'||upper(#{keyword}) ||'%'
+					 	
+					</when>
+					<otherwise>
+					 	and upper(${option}) like '%'||upper(#{keyword}) ||'%'
+					 	</otherwise>
+				</choose>
+			</if>
+			order by e.employee_id
+	
 
 	</select>
 	
+	<insert id="insert">
+
+	INSERT INTO EMPLOYEES (EMPLOYEE_ID, LAST_NAME, EMAIL,SALARY, COMMISSION_PCT, DEPARTMENT_ID)
+VALUES(seq_EMPLOYEE_ID.nextval, #{name} , #{email} , #{salary} , #{commission_pct}, #{department_id})
+	</insert>
+	<delete id="delete">
+		DELETE FROM EMPLOYEES WHERE EMPLOYEE_ID = #{employee_id}
+	</delete>
+	<insert id="update">
+
+	update EMPLOYEES set LAST_NAME = #{name}, EMAIL = #{email} ,SALARY= #{salary} , 
+	COMMISSION_PCT = #{commission_pct}, DEPARTMENT_ID = #{department_id} where employee_id = #{employee_id}
+	</insert>
+	<select id="depart" resultType="sg.SgVO">
+	select * from departments
+	</select>
 	
 </mapper>

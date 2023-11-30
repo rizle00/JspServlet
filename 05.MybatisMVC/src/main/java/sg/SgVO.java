@@ -2,13 +2,14 @@ package sg;
 
 public class SgVO {
 	private String name, email,  department_name;
-	private int employee_id,  salary, commission_pct, manager_id, department_id;
+	private int employee_id,  salary,  manager_id, department_id;
+	private double commission_pct;
 	
 	
-	public int getCommission_pct() {
+	public double getCommission_pct() {
 		return commission_pct;
 	}
-	public void setCommission_pct(int commission_pct) {
+	public void setCommission_pct(double commission_pct) {
 		this.commission_pct = commission_pct;
 	}
 	public int getDepartment_id() {

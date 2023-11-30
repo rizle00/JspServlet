@@ -10,8 +10,8 @@
       <dataSource type="POOLED">
         <property name="driver" value="${db.driver}"/>
         <property name="url" value="${db.url}"/>
-        <property name="username" value="${hr.user}"/>
-        <property name="password" value="${hr.pw}"/>
+        <property name="username" value="${hanul.user}"/>
+        <property name="password" value="${hanul.pw}"/>
       </dataSource>
     </environment>
   </environments>
