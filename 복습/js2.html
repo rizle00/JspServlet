@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="sum(1,2);">함수 호출</button>
+    <script>
+      //  if문을 활용함. 똑같음
+      function ageIf() {
+        const currentYear = 2023;
+        let birthYear;
+        let age;
+
+        birthYear = parseInt(prompt("태어난 연도를 입력하세요.(yyyy)", "0"));
+        age = currentYear - birthYear + 1;
+
+        if (age < 20) {
+          alert(`${age} 살은 성인이 아닙니다.`);
+        } else {
+          alert(`${age} 살은 성인이 맞습니다.`);
+        }
+      }
+
+      function multiple() {
+        // for
+        // 같은 동작을 어떤 변수나 구분을 통해 하는 것. (배열이나 여러가지 자료구조를 쓸 때 같은 동작을 for와 index)
+        // for(초기값; 조건; 증감식){반복구간}
+        for (let i = 0; i < 10; i++) {
+          console.log(`${i} 반복중`);
+        }
+
+        for (let i = 1; i <= 9; i++) {
+          console.log(2 * i);
+        }
+
+        for (let i = 2; i <= 9; i++) {
+          for (let j = 1; j < 10; j++) {
+            console.log(`${i}*${j} = ${i * j}`);
+          }
+        }
+
+        const animal = ["강아지", "고양이", "부엉이", "참새"];
+        for (let i = 0; i < animal.length; i++) {
+          console.log(`${animal[i]}`);
+        }
+
+        // foreach(콜백 함수)
+        animal.forEach(function (animalSingle) {
+          console.log(`${animalSingle}`);
+        });
+        //  화살표 함수
+        animal.forEach((animalSingle) => console.log(`${animalSingle}`));
+      }
+
+      function forInFn() {
+        const KmjObject = {
+          name: "객체명",
+          gender: "남",
+          age: 99,
+        };
+        // console.log(KmjObject.age);
+        // for(빼올키값 in 객체)
+        for (key in KmjObject) {
+          console.log(`${key} : ${KmjObject[key]}`);
+        }
+      }
+
+      function triple() {
+        let num = parseInt(prompt("숫자를 입력하세요"));
+        num % 3 == 0 ? alert("3의 배수!") : alert("노노노!");
+      }
+      function check() {
+        let num = parseInt(prompt("숫자를 입력하세요"));
+        if (num > 3) {
+          for (let i = 1; i <= num; i++) {
+            console.log(`${i}`);
+          }
+        }
+      }
+      //    1 == '1' true, 1==='1' false 1===1 true
+
+    //   함수 == 메소드 거의 비슷
+    //  함수는 선언할 때에는 function 이라는 '예약어'를 사용하고, 함수 이름을 적고 중괄호 블럭킹을 만듬
+    // funtion 함수이름(파라미터부){
+    //     명령(들)....
+    // }
+
+    function calcSum(paramNum){ //함수도 메소드와 마찬가지로 의미를 알 수 있는 이름을 지어주는게 좋다.
+        let sum = 0;
+        for( let i = 1; i<=paramNum;  i++){
+            sum += i;
+        }
+        console.log(`1부터 ${paramNum} 까지 합은 ${sum} 입니다.`)
+    } 
+
+    calcSum(20);
+
+    function sum (x,y =0){
+        // console.log(x+y);
+        return x+y;
+    }
+
+    // console.log(sum(1));
+    // console.log(sum(1,2));
+    // 객체 : 기능과 속성을 가지는 것
+    //  java : dao(기능), dto(속성)
+    //  내장 객체 : 사용자 정의 객체, 문자(String), 날짜(Date), 배열(Array), 수학(Math)... 검색을 통해 사용, 
+    //  브라우저 객체 모델(BOM) :  window, screen, "location", "history".... 검색을 통해 사용
+    //  문서 객체 모델 (DOM) : <html>, <head>, <body> ....
+        // 1.사용자 객체 ( java 에서 dto dao)
+        //     구조 :  객체명{
+        //         키1: 값1
+        //         키2 : 값2.....
+        //     }
+
+        let car = {
+            company : '현대', //=> 프로퍼티(속성)
+            model : '그렌저',
+            color : '검정',
+            maxSpeed : 200,
+            run(){ //run : function() -> run()
+                console.log(`${this.color}차가 달립니다`);
+            },
+            tire : {
+                company : "타이어 제조사"
+            }
+        };
+        car.model = '소나타';
+        car.tire = '한국 타이어'; // 프로퍼티에 새로운 키와 밸류가 추가됨..
+        console.log(car.model +car.color +car.tire);// 점 표기법 객체.프로퍼티키
+        console.log(car["moder"] + car["color"]); //괄호 표기법.  프로퍼티키에 큰따옴표를 씌워줌 (for in 과 활용함)
+        car.run();
+        let tempObj = {};// new Object();
+        tempObj.data1 = 'data1';
+        console.log(tempObj.data1);
+
+        class Product{
+            constructor(name, price){
+                this.name =name;
+                this.price = price;
+
+            }
+        }
+        let product1 = new Product("상품명1", 12345);
+        console.log(`${product1.name} 가격 : ${product1.price}`);
+
+        class Calculator{
+            constructor(num1,num2){
+                this.num1 = num1;
+                this.num2 = num2;
+            }
+            sum(num1,num2){
+                console.log(num1+num2);
+            }
+            minus(num1,num2){
+                console.log(num1-num2);
+            }
+            mul(num1,num2){
+                console.log(num1*num2);
+            }
+            div(num1,num2){
+                console.log(num1/num2);
+            }
+            
+        
+        }
+    </script>
+  </body>
+</html>

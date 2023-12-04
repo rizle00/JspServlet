@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js1</title>
+</head>
+<body>
+    <h1>연습</h1>
+    <p>자바 스크립트는 자바 스크립트 영역에서 작업을 한다.</p>
+    <p>기본형 : number(숫자), String (문자열). boolean(논리형), undefined(자료형을 지정하지 않으면 오류가 발생함), null(값이 유효하지 않을 때의 유형)</p>
+    <p>기본형 : array(배열), object(객체)</p>
+    <script>
+        // document.write("Hello JavaScript!")
+        // var 변수명; 또는 var 변수명 = 값;
+        var str = 'hello';
+        var num = 100;
+        var bool = false;
+        var undif;
+        var nullv = null;
+        console.log(str);
+        console.log(num);
+        console.log(bool);
+        console.log(undif);
+        console.log(nullv);
+
+        var result1 =1 ==1;
+        var result2 = 2 ==1;
+
+        var result3 =10>5? "왼쪽이 크다" :"오른쪽이 크다";
+        console.log(result1);
+        console.log(result2);
+        console.log(result3);
+
+        var num1 = 30;
+        var num2 = 40;
+        var result4 = num1>num2 ? "30 이 크다" : "40 이 크다"
+        console.log(num1>num2 ? num1+"이 크다" : num2+" 이 크다");
+
+        // 2015년 이전 까지는 var만 사용했음. ECMAScript
+        // 자바스크립트의 역할이 커지면서 upup + 객체지향을 강제함 (TypeScript)
+
+ 
+        // var : 재선언, 재할당 가능  -> 재선언이 가능하기 때문에 혼동이 많이 됨
+        // let : 재선언 불가 재할당가능
+        // const : 재선언, 재할당 불가
+        var numV =10;
+        console.log(numV);
+        var numV =20;
+        console.log(numV);
+
+        let numL =10;
+        console.log(numL);
+        // let numL =20; Uncaught SyntaxError: Identifier 'numL' has already been declared 오류 발생, 이미 있는 변수는 사용x
+        numL =30;
+        console.log(numL);
+
+        const numC=10;
+        // numC=20; Uncaught TypeError: Assignment to constant variable. 상수는 변경이 
+        
+        // typeof() 함수
+        // 자바스크립트에서 제공하는 함수로 괄호 안에 값이나 변수를 넣으면 어떤 자료형인지 알려줌.(return)
+        // C,Java등의 언어에서는 이미 타입(변수)이 주어졌기때문에 Object를 제외하고는 타입추론이 빈번하게 발생하지 않음
+        // 정수와 실수를 묶어서 숫자형
+        console.log(typeof(10));
+        console.log(typeof('10'));
+        console.log(typeof(3.14));
+        console.log('(\\(\\');
+        console.log('(-.-)');
+        console.log('o_(\")(\")');
+       
+        var name = "김이름";
+        var classNumber =201;
+
+        console.log(classNumber+1+'호반'+name+'님 환영합니다');
+        // 기존 방법은 변수나 식이 복잡해지면 +누락 등으로 오타 확률이 있어 오류가 발생함
+        console.log(` ${classNumber+1} 호반 ${name}님 환영합니다`);
+        // 변수나 식이 복잡해도 변수를 그대로 가져다가 쓸 수 있어서 오류 발생이 낮음
+
+        // 자바스크립트는 언어가 아니다. (다른 언어와 다르게 프로그램 실행 중 자료형이 변환되는 자동 형 변환이 있음?)
+        // int num =20;
+        // String name = num (x) ; String
+
+        // 자바스크립트는 처음 선언 할 때 자료형 지정이 없기 때문에 일관성을 유지하는게 어려움.
+        var num = 20;
+        var num = '이름';
+        
+        var one ="20";
+        var two = 40;
+        console.log(one +two);
+        console.log(one -two);
+//      문자열을 사칙 연산에 사용하면 자동으로 숫자형으로 변환이 됨(결합)
+
+//      Number(), parseInt(), parseFloat()
+//      문자열 뿐만 아니라 null과 undefined를 포함해서 모든 자료형을 숫자로 변환하는 함수
+//      true 1, false 0
+// null 0
+// undefined : NaN
+// 문자열 0이 앞에 있으면 제거 후 숫자로 바꿈
+        console.log(Number("20")+40);
+
+        // toString 문자열로 변환
+
+        let userInput = prompt("값을 입력해주세요"); //Scanner.nextLine
+        console.log(typeof(Number(userInput))==Number? userInput+20 : userInput);
+        
+    </script>
+</body>
+</html>
