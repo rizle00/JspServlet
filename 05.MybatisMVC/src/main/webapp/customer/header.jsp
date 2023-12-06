@@ -33,6 +33,8 @@
                         <li class="nav-item"><a class="nav-link" href="list.hr">HR조회</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.jstl">JSTL연습</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.sg">혼자 해보기</a></li>
+                        <li class="nav-item"><a class="nav-info m-3" href="loginpage.me">로그인</a></li>
+                        <li class="nav-item"><a class="nav-info" href="joinpage.me">회원가입</a></li>
                     </ul>
                 </div>
             </div>
