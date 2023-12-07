@@ -20,7 +20,8 @@ public class MemberDAO extends MybatisConnection implements MemberService{
 
 	@Override
 	public MemberVO member_login(MemberVO vo) {
-		return null;
+		
+		return sql.selectOne( "me.login", vo);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -33,9 +34,23 @@
                         <li class="nav-item"><a class="nav-link" href="list.hr">HR조회</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.jstl">JSTL연습</a></li>
                         <li class="nav-item"><a class="nav-link" href="list.sg">혼자 해보기</a></li>
+                        
+                         <c:if test="${empty logininfo }">
+                    
+                    
                         <li class="nav-item"><a class="nav-info m-3" href="loginpage.me">로그인</a></li>
                         <li class="nav-item"><a class="nav-info" href="joinpage.me">회원가입</a></li>
+                        
+                        </c:if>
+                        
+                        <c:if test="${not empty logininfo }">
+                        <li class="nav-item"><span class="nav-link">${logininfo.name}님 환영합니다.</span></li>
+                        <li class="nav-item"><a class="nav-info" href="logout.me">로그아웃</a></li>
+                        </c:if>
                     </ul>
+                    
+                   
+                    
                 </div>
             </div>
         </nav>

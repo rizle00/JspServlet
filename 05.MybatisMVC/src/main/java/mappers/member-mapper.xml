@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me">
+	
+	<select id="login" resultType="member.MemberVO">
+	SELECT * FROM HANUL_MEMBER WHERE USER_ID = #{user_id} and USER_PW = #{user_pw}
+	</select>
+	
+
+	
+</mapper>

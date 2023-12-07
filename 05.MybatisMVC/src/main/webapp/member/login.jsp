@@ -33,7 +33,8 @@
             </div>
 
             <div class="form-outline mb-4">
-              <input type="password" id="user_pw" name="user_pw" class="form-control form-control-lg" placeholder="비밀번호 입력" />
+              <input type="password" id="user_pw" name="user_pw" class="form-control form-control-lg" placeholder="비밀번호 입력"
+              onkeypress="if(event.keyCode==13) login();" />
               <label class="form-label" for="user_pw">패스워드</label>
             </div>
 
@@ -69,18 +70,28 @@
 		/* 페이지를 새로 요청 x -> Controller나 다른 API에 데이터만 따로 요청을 하는 형태 -> 비동기 통신
 		XMLHttpRequest 객체, Http 객체 : 코드가 조금 복잡함.
 		Jquery : Ajax
-		type : method
+		type : json...
+		method : 
 		url : 어디에 요청할껀지
 		data : 어떤것을 전송할건지
 		success : 실행되는 펑션
 		error : 실행되는 펑션 */
 		
 		$.ajax({
-			type:'post',
+			method:'post',
 			url: 'login.me',
 			data: { user_id:$('#user_id').val(), user_pw:$('#user_pw').val()},
-			success : function (response){
-				console.log(response);
+			success : function (res){
+				if(res == '1'){
+					//1.reload(x), 로그인 페이지가 다시 나옴. -> session에 정보가 있다면 홈
+					//2.href = '/mvc'
+					//3.href = 'c:url value = "/"'/
+					//  / -> 루트임
+					location.href='/mvc';
+				} else{
+					alert('로그인 실패');
+					$('#user_id').focus();
+				}
 			},
 			error : function (req, text){
 				alert(req.status + '오류! 다시 로그인 시도를 해주세요')

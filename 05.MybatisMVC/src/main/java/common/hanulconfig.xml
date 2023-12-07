@@ -17,6 +17,7 @@
   </environments>
   <mappers>
     <mapper resource="mappers/cus-mapper.xml"/>
+    <mapper resource="mappers/member-mapper.xml"/>
   </mappers>
   <!-- <settings>
   <setting name="defaultAutoCommit" value="true"/>
