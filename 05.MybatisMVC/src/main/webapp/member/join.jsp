@@ -20,13 +20,17 @@
 
 	<div class="container">
   <div class="row">
-  <form action="joinpage.me" class="col-xs-12 col-sm-12 col-md-12">
   <h2>회원가입</h2>
+  <form action="join.me" class="col-xs-12 col-sm-12 col-md-12" method="post" autocomplete="off">
   <div class="form-group">
+  	<div class="col-md-6">
       <input type="text" class="form-control" id="user_id" placeholder="Enter id *" name="user_id" required>
       <label for="user_id">아이디</label>
     </div>
-	
+    </div>
+    
+	<a  class="btn btn_primary" id="check_id" >아이디 중복확인</a>
+      
 	<div class="form-group">
       <input type="password" class="form-control" id="user_pw" placeholder="Enter password *" name="user_pw" required>
       <label for="user_pw">비밀번호</label>
@@ -54,7 +58,7 @@
     </div>
 	
     
-    <a class="btn btn-success">회원가입 <i class="glyphicon glyphicon-send"></i></a>
+    <a class="btn btn-success" id="btn_join">회원가입 <i class="glyphicon glyphicon-send"></i></a>
   </form>
   </div>
 </div>
@@ -76,6 +80,42 @@ $('#btn_post').click(function () {
         }
     }).open();
 });
+
+$('#btn_join').click(function () {
+	if( !$('#user_id').hasClass('checked')) alert('아이디 중복확인을 하세요'); return;
+	
+	
+	console.log('유효성 검사가 올바르게 진행되는지?')
+	$('form').submit();
+	
+});
+$('#check_id').click(function () {
+	//1. input 타입에 있는 실제 사용자가 입력한 아이디를 콘솔창에 찍을 수 있는지
+	//2. ajax : 페이지 새로고침 없이 아이디만 중복확인을 해야함.
+	console.log($('#user_id').val());
+	//ajax 통신도 결국에 어떤 요청을 하는 행위 : 아이디에 5글자 이상이 입력이 되면 전송처리가 되게 만들어야함.
+	let user_id = $('#user_id').val();
+	
+	if(user_id ==''){
+		alert('아이디를 입력해주세요!')
+		return;
+	} else if(user_id.length <5){
+		alert('5글자 이상 입력해주세요.')
+		return;
+	}
+	
+	$.ajax({
+		url : 'idCheck.me',
+		data : {user_id: user_id},
+		success: function (res) {
+		//성공 했을 때 처리!
+		console.log(res);
+		}, error: function (req) {
+			console.log(req.status);
+		}
+	})
+});
+
 </script>
 
 </html>

@@ -9,6 +9,22 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <!-- 한글 인코딩 Strat -->
+<filter>
+	<filter-name>encodingFilter</filter-name>
+	<filter-class>
+		common.EncodingFilter
+	</filter-class>
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</init-param>
+</filter>
+<filter-mapping>
+	<filter-name>encodingFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+<!-- 한글 인코딩 End -->
   <!-- 리스너 & 필터 등을 이용해서 인코딩 처리
   에러가 발생했을 때 url을 요청하여 에러 페이지를 보여주게 하는 처리
   에러가 발생 -> 코드 종류에[ 따라 따로 Servlet을 요청하고 처리하는게 가능

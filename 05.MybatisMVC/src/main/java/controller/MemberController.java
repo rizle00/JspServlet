@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import member.MemberDAO;
+import member.MemberDAO_id;
 import member.MemberService;
 import member.MemberVO;
 
@@ -47,7 +48,26 @@ public class MemberController extends HttpServlet {
 			} else if (req.getServletPath().equals("/joinpage.me")) {
 				rd = req.getRequestDispatcher("member/join.jsp");
 				rd.forward(req, resp);
+			} else if (req.getServletPath().equals("/join.me")) {
+				MemberVO vo = new MemberVO();
+				vo.setUser_id(req.getParameter("user_id"));
+				vo.setUser_pw(req.getParameter("user_pw"));
+				vo.setName(req.getParameter("name"));
+				vo.setEmail(req.getParameter("email"));
+				vo.setAddress(req.getParameter("address"));
+				vo.setPost(req.getParameter("post"));
+				System.out.println(vo.getName());
+				service = new MemberDAO();
+				System.out.println(service.member_join(vo));
+			} else if (req.getServletPath().equals("/idCheck.me")) {
+				
+				service = new MemberDAO_id();
+//				service.member_idCheck(req.getParameter("user_id"));
+				System.out.println(service.member_idCheck(req.getParameter("user_id")));
+				resp.getWriter().print(service.member_idCheck(req.getParameter("user_id")));
 			}
+				
+			
 			
 			
 		}
