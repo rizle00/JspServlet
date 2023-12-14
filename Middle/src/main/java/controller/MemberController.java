@@ -20,17 +20,14 @@ public class MemberController extends HttpServlet {
 
 		MemberService service = new MemberDAO();
 	if(req.getServletPath().equals("/login.me")) {
-		System.out.println(req.getParameter("user_id"));
-		System.out.println(req.getParameter("user_pw"));
 		MemberVO vo = new MemberVO();
 		vo.setUser_id(req.getParameter("user_id"));
 		vo.setUser_pw(req.getParameter("user_pw"));
+		vo.setSocial(req.getParameter("social"));
 		vo = service.member_login(vo);
-
-
-		System.out.println(vo.getUser_id());
-		System.out.println(vo.getUser_pw());
-		System.out.println(vo.getName());
+		String jsonData  = new Gson().toJson(vo);
+		resp.getWriter().print(jsonData);
+		System.out.println(jsonData);
 	}
 	}
 }
