@@ -1,0 +1,26 @@
+CREATE TABLE HANUL_MEMBER(
+    USER_ID VARCHAR2(30) PRIMARY KEY,
+    USER_PW VARCHAR2(20) NOT NULL,
+    NAME NVARCHAR2(17) NOT NULL,
+    EMAIL VARCHAR2(100) NOT NULL,
+    BIRTH DATE,
+    PHONE NVARCHAR2(13),
+    ADDRESS VARCHAR2(100),
+    POST VARCHAR2 (20),
+    SOCIAL VARCHAR2 (10),
+    ADMIN_YN NVARCHAR2(1) DEFAULT 'N');
+    
+  INSERT INTO hanul_member (USER_ID, USER_PW, NAME, EMAIL)
+   VALUES ('hanul201', '0000', '김한울', 'hanul@naver.com');
+   
+   
+   SELECT * FROM HANUL_MEMBER WHERE USER_ID = #{user_id} and USER_PW = #{user_pw}
+   
+   select count(user_id) from hanul_member where user_id = 'test';
+  commit;
+  
+  
+  SELECT *
+  FROM HANUL_MEMBER
+  WHERE USER_ID ='hanul201'
+  AND  USER_PW ='0000';

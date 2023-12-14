@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me">
+	
+	<select id="login" resultType="member.MemberVO">
+	SELECT * FROM HANUL_MEMBER WHERE USER_ID = #{user_id} and USER_PW = #{user_pw}
+	</select>
+	<insert id="join">
+	INSERT INTO hanul_member (USER_ID, USER_PW, NAME, EMAIL, ADDRESS, POST)
+   VALUES (#{user_id}, #{user_pw},#{name}, #{email}, #{address}, #{post})
+	</insert>
+	<select id="idCheck" resultType="Integer">
+	select count(user_id) from hanul_member where user_id = #{user_id}
+	</select>
+	
+</mapper>
